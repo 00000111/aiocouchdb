@@ -22,6 +22,7 @@ from collections import deque, defaultdict
 import aiocouchdb.client
 import aiocouchdb.errors
 from aiocouchdb.client import urljoin, extract_credentials
+from yarl import URL
 
 
 TARGET = os.environ.get('AIOCOUCHDB_TARGET', 'mock')
@@ -50,7 +51,7 @@ class TestCase(unittest.TestCase, metaclass=MetaAioTestCase):
 
     _test_target = TARGET
     timeout = 10
-    url = 'http://localhost:5984'
+    url = URL('http://localhost:5984')
 
     def setUp(self):
         self.loop = asyncio.new_event_loop()
